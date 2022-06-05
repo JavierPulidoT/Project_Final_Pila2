@@ -2,7 +2,7 @@
 {
     "presets":[
         [
-            "minify"  // Minificacion con babel
+            "minify", {"mangle":true} // Minificacion con babel
         ],
         [
          "@babel/preset-env",
