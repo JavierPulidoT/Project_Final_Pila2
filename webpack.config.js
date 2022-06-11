@@ -1,6 +1,8 @@
 //Import dependencia path
 //dependencia del core de Node
 const path = require('path');
+//Plugins para Webpack
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     //1.Especificar el archivo de (entrada)
