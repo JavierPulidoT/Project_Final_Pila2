@@ -1,6 +1,11 @@
+// Incorporando estilos
+// a mi bundle
+import './styles/style.css'
+import './styles/mystyle.css'
+
 console.log("📦 Webpack Working!!!");
 
-//default parameters
+// Default parameters ES6/2015
 let show = (m="😋") => {  //arrow funtion 
     console.log(m);
 }   
