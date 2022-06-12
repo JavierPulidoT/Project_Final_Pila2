@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 // Preambulo
 // Ayuda a manejar errores http
 import createError from 'http-errors';
@@ -11,18 +13,16 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
 // Las rutas
-
 import webpack from 'webpack';
 import WebpackDevMiddleware from 'webpack-dev-middleware';
 import WebpackHotMiddleware from 'webpack-hot-middleware';
+
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
 import aboutRouter from './routes/about';
 
 // Importando los modulos de webpack
-// Nucleo del webpack
-// Permite incrustar webpack en Express
-// Permite la actualizacion dinamica de la pagina
+
 // Configuracion
 import webpackConfig from '../webpack.dev.config';
 
@@ -36,7 +36,7 @@ const nodeEnv = process.env.NODE_ENV || 'development';
 // Decidiendo si embebemos el webpack middleware
 if (nodeEnv === 'development') {
   // Embebiendo webpack a mi aplicacion
-  console.log('✍ Ejecutando en modo desarrollo 👀');
+  console.log(`✍ Ejecutando en modo desarrollo 👀`);
 
   // Estableciendo el modo de Webpack en desarrollo
   // en el configurador
@@ -58,14 +58,16 @@ if (nodeEnv === 'development') {
   const bundler = webpack(webpackConfig);
 
   // Habilitando el Middleware de webpack en Express
-  app.use(WebpackDevMiddleware(bundler, {
-    publicPath: webpackConfig.output.publicPath,
-  }));
+  app.use(
+    WebpackDevMiddleware(bundler, {
+      publicPath: webpackConfig.output.publicPath,
+    })
+  );
 
   // Habilitando el Middleware del Webpack HMR
   app.use(WebpackHotMiddleware(bundler));
 } else {
-  console.log('✍ Ejecutando en modo produccion🌀 ');
+  console.log(`✍ Ejecutando en modo produccion🌀 `);
 }
 
 // Configuracion del motor de pantillas (templae Engine)
@@ -97,7 +99,8 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res, next) => { // sE Cambio funtion declaretion por funtion asesion
+app.use((err, req, res) => {
+  // sE Cambio funtion declaretion por funtion asesion
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

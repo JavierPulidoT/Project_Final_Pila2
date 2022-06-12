@@ -1,44 +1,41 @@
-#!/usr/bin/env node
-
+/* eslint-disable no-console */
 /**
  * Module dependencies.
  */
 
-// var app = require('../app');
 import app from '@s/app';
-// var debug = require('debug')('projnotes:server');  //(importar)(ejecutar lo importado)
 import Debug from 'debug';
-// var http = require('http');
 import http from 'http';
 
 // creando instancia del debugger
 const debug = Debug('projnotes:server');
+
 /**
-  * Get port from environment and store in Express.
-  */
+ * Get port from environment and store in Express.
+ */
 
 const port = normalizePort(process.env.PORT || '3000');
 // app es una instancia de ExpressJs [] [Node]
 app.set('port', port);
 
 /**
-  * Create HTTP server.
-  */
+ * Create HTTP server.
+ */
 // callback
-const server = http.createServer(app);// (req,res,next,err)=>{} (petiicon respuesta next y error)
+const server = http.createServer(app); // (req,res,next,err)=>{} (petiicon respuesta next y error)
 
 /**
-  * Listen on provided port, on all network interfaces.
-  */
+ * Listen on provided port, on all network interfaces.
+ */
 
 server.listen(port); // pone al server a escuchar
 // Se registran eventos
 server.on('error', onError); // En caso de error
-server.on('listening', onListening);// Cuando esta escuchando
+server.on('listening', onListening); // Cuando esta escuchando
 
 /**
-  * Normalize a port into a number, string, or false.
-  */
+ * Normalize a port into a number, string, or false.
+ */
 
 function normalizePort(val) {
   const port = parseInt(val, 10);
@@ -57,17 +54,15 @@ function normalizePort(val) {
 }
 
 /**
-  * Event listener for HTTP server "error" event.
-  */
+ * Event listener for HTTP server "error" event.
+ */
 
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
   }
 
-  const bind = typeof port === 'string'
-    ? `Pipe ${port}`
-    : `Port ${port}`;
+  const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -87,12 +82,13 @@ function onError(error) {
 }
 
 /**
-  * Event listener for HTTP server "listening" event.
-  */
+ * Event listener for HTTP server "listening" event.
+ */
 
 function onListening() {
   const addr = server.address();
-  const bind = typeof addr === 'string' ? 'pipe'`pipe ${addr}` : `port ${addr.port}`;
+  const bind =
+    typeof addr === 'string' ? 'pipe'`pipe ${addr}` : `port ${addr.port}`;
   debug(`Listening on ${bind}`);
   console.log(`Servidor escuchando en...${app.get('port')}`);
 }
