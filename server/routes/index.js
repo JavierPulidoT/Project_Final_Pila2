@@ -7,11 +7,11 @@ router.get('/', (req, res) => {
   // render(callback) manda a llamar-renderizar al temple engine (generar y entregar )
   // la vista al
   // calculando
-  const emojieDataset = ['💻', '🔍', '🍕', '🐶', '🤨', '😎', '😍'];
+  const emojieDataset = ['💻', '🔍', '💰', '💳', '💸'];
   const emojie =
     emojieDataset[Math.floor(Math.random() * emojieDataset.length)];
   res.render('index', {
-    title: 'Express',
+    title: 'Project Wallet',
     author: '🙍‍♂️Javier Pulido',
     emojie,
   });
