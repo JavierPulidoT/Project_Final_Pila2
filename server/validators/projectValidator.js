@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 const projectSchema = Yup.object().shape({
   symbol: Yup.string().required('Se requiere simbolo de la Crypto'),
   name: Yup.string().required('Se requiere el nombre de la crypto'),
-  quantity: Yup.number().required('Se requiere la cantidad de tu crypto/coin'),
+  quantity: Yup.string().required('Se requiere la cantidad de tu crypto/coin'),
 });
 
 // 3 Creamos el middleware d evalidacion

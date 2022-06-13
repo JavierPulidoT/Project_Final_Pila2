@@ -8,8 +8,8 @@
             <form autocomplete="off" action="/projects/add" method="POST">
             <div class="card-content">
                  
-                 <div class="input-field">
-                        <label for="project-name">Simbolo</label>
+                 {{!-- <div class="input-field">
+                        <label for="project-symbol">Simbolo</label>
                         <input
                         placeholder="Ingrese simbolo"
                          type="text" 
@@ -29,12 +29,80 @@
                     </div>
 
                     <div class="input-field">
-                        <label for="project-description">
-                           Cantidad
-                        </label>
-                        <textarea name="quantity" id="coin-quantity"
-                        class="materialize-textarea" placeholder="25.89"></textarea>
+                        <label for="project-quantity"> Cantidad</label>
+                        <input
+                        placeholder="25.89"
+                         type="text" 
+                        id="coin-quantity" 
+                        name="quantity"
+                        class="validate">
                     </div>
+
+                    --}}
+
+                 <div class="input-field">
+                        <label for="project-symbol">Simbolo</label>
+                        <input
+                        placeholder="Ingrese simbolo"
+                         type="text" 
+                        id="coin-symbol" 
+                        name="symbol"
+                        class="validate"
+                        value="{{project.symbol}}"
+                        required
+                        />
+                        <span
+                         class="helper-text" 
+                         data-error="Debe Ingresar el simbolo"
+                         data-success="Correcto"></span>
+                        {{#if errorModel.symbolError}}
+                        <span style="color:red">
+                            Error: {{errorModel.symbolError}}</span>
+                        {{/if}}
+                    </div>
+
+                    <div class="input-field">
+                        <label for="project-name">Nombre de la Crypto</label>
+                        <input
+                        placeholder="Ingrese nombre de la crypto/coin"
+                         type="text" 
+                        id="coin-name" 
+                        name="name"
+                        class="validate"
+                        value="{{project.name}}"
+                        required
+                        />
+                        <span
+                         class="helper-text" 
+                         data-error="Debe Ingresar nombre de la crypto"
+                         data-success="Correcto"></span>
+                        {{#if errorModel.nameError}}
+                        <span style="color:red">
+                            Error: {{errorModel.nameError}}</span>
+                        {{/if}}
+                    </div>
+
+                   <div class="input-field">
+                        <label for="project-quantity"> Cantidad</label>
+                        <input
+                        placeholder="25.89"
+                         type="text" 
+                        id="coin-quantity" 
+                        name="quantity"
+                         class="validate"
+                        value="{{project.quantity}}"
+                        required
+                        />
+                        <span
+                         class="helper-text" 
+                         data-error="Debe Ingresar Cantidad"
+                         data-success="Correcto"></span>
+                        {{#if errorModel.quantityError}}
+                        <span style="color:red">
+                            Error: {{errorModel.quantityError}}</span>
+                        {{/if}}
+                    </div>
+
             </div>
             <div class="card-action">
                 <button type="submit" 
