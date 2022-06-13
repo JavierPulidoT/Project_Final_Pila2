@@ -1,3 +1,4 @@
+import log from '../config/winston';
 /* Action Methods */
 // Lista los proyectos
 // GET /projects | GET /projects/index
@@ -16,11 +17,19 @@ const add = (req, res) => {
 // Procesa el formulario que Agrega ideas de Proyectos
 // POST /projects/add
 const addPost = (req, res) => {
-  // Desestructurando la informacion del Formulario
-  const { symbol, name, quantity } = req.body;
-  // Regresar un objeto con los datos...
-  // obtenidos del formulario
-  res.status(200).json({ symbol, name, quantity });
+  const { errorData: error } = req;
+  if (error) {
+    log.info('Se retorna objeto de error de validacion');
+    // La validacion fallo
+    res.status(200).json(error);
+  } else {
+    // Desestructurando la informacion del Formulario
+    const { validData: project } = req; // req (peticion)
+    log.info('Se retorna objecto Projecto valido');
+    // Regresar un objeto con los datos...
+    // obtenidos del formulario
+    res.status(200).json(project);
+  }
 };
 
 // Exportando el controlador
