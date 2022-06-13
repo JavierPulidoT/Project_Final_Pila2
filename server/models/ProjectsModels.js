@@ -7,13 +7,17 @@ const { Schema } = mongoose;
 
 // 3 Creamos el Schema
 const ProjectSchema = new Schema({
+  symbol: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: true,
   },
-  description: {
+  quantity: {
     type: String,
-    require: true,
+    required: true,
   },
   date: {
     type: Date,
